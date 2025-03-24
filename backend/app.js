@@ -71,7 +71,6 @@ app.get('/api/v1/price-history/:symbol', asyncWrapper((req, res) => {
   res.status(200).json({ query: query.all(symbol) });
 }))
 
-app.post('*', (req, res) => {})
 app.get('*', (req, res) => {
   res.status(404).json({ msg: 'Route not found' });
 });
