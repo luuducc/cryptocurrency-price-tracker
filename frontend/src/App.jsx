@@ -3,7 +3,7 @@ import axios from 'axios';
 import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import './App.css';
 
-const baseUrl = 'http://localhost:3000/api/v1';
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 function App() {
   const [symbol, setSymbol] = useState('');

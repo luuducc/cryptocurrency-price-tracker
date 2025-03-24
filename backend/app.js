@@ -61,26 +61,6 @@ app.get('/api/v1/currency-price/:symbol', asyncWrapper(async (req, res) => {
   insert.run(symbol, price, timestamp)
 }));
 
-// Store price history
-app.post('/api/v1/price-history', asyncWrapper((req, res) => {
-  const { symbol, price } = req.body;
-  const timestamp = new Date().toISOString();
-  console.log(timestamp)
-
-  if (!symbol || !price || !timestamp)
-    return res
-      .status(400)
-      .json({ msg: "Please input all symbol, price and timestamp in the body!" });
-
-  const insert = database.prepare(
-    'INSERT INTO price_history (symbol, price, timestamp) VALUES (?,?,?)'
-  );
-
-  const result = insert.run(symbol, price, timestamp);
-  console.log('result', result)
-  res.status(200).json({ result });
-}));
-
 // Get price history
 app.get('/api/v1/price-history/:symbol', asyncWrapper((req, res) => {
   const { symbol } = req.params;
